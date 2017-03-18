@@ -132,7 +132,7 @@ string getOutputFileName(string path, string name)
 		}
 	}
 
-	return fname + "_" + name + "_scanned" + ext;
+	return fname + "_" + name + ext;
 }
 
 int main( int argc, char** argv)

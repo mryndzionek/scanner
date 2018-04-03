@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 
+#include <stdio.h>
 #include <math.h>
 #include <iostream>
 
@@ -79,10 +80,10 @@ void fourPointTransform(Mat src, Mat &dst, vector<Point> pts)
 
 	Point2f src_[] =
 	{
-			Point2f(ordered_pts[0]),
-			Point2f(ordered_pts[1]),
-			Point2f(ordered_pts[2]),
-			Point2f(ordered_pts[3]),
+			Point2f(ordered_pts[0].x, ordered_pts[0].y),
+			Point2f(ordered_pts[1].x, ordered_pts[1].y),
+			Point2f(ordered_pts[2].x, ordered_pts[2].y),
+			Point2f(ordered_pts[3].x, ordered_pts[3].y),
 	};
 	Point2f dst_[] =
 	{
@@ -137,14 +138,17 @@ string getOutputFileName(string path, string name)
 
 int main( int argc, char** argv)
 {
-	CommandLineParser parser(argc, argv, "{ @image | | Path to the image to be scanned }");
 
-	if (!parser.check()) {
-		parser.printErrors();
-		return -1;
+	static const char * const keys = "{ i |image| }";
+	CommandLineParser parser(argc, argv, keys);
+
+	string image_name(parser.get<String>("image"));
+
+	if (image_name.empty())
+	{
+	    parser.printParams();
+	    return -1;
 	}
-
-	string image_name(parser.get<string>(0));
 
 	Mat image = imread(image_name);
 	if (image.empty())

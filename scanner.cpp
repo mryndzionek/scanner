@@ -139,17 +139,16 @@ string getOutputFileName(string path, string name)
 int main( int argc, char** argv)
 {
 
-	static const char * const keys = "{ i |image| }";
+	static const char * const keys = "{ @image |<none>| }";
 	CommandLineParser parser(argc, argv, keys);
 
-	string image_name(parser.get<String>("image"));
-
-	if (image_name.empty())
+	if (!parser.has("@image"))
 	{
-	    parser.printParams();
+	    parser.printMessage();
 	    return -1;
 	}
 
+	string image_name(parser.get<String>("@image"));
 	Mat image = imread(image_name);
 	if (image.empty())
 	{

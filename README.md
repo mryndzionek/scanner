@@ -11,6 +11,13 @@ Some image pre-processing steps were also added.
 ![flat](https://github.com/mryndzionek/scanner/raw/master/images/ticket_flat.JPG)
 ![scanned](https://github.com/mryndzionek/scanner/raw/master/images/ticket_scanned.JPG)
 
+Running
+-------
+
+```sh
+./scanner images/ticket.JPG
+```
+
 License
 -------
   - MPLv2

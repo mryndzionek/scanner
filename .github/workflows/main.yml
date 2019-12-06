@@ -1,0 +1,27 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+    - name: Prepare
+      run: |
+        sudo apt-get update
+        sudo apt-get install libopencv-dev
+
+    - name: Checkout
+      uses: actions/checkout@v2-beta
+
+    - name: Configure
+      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ..
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Run
+      run: cd build && ./scanner ../images/ticket.JPG

@@ -1,6 +1,8 @@
 OpenCV document scanner
 =======================
 
+![status](https://github.com/mryndzionek/scanner/workflows/CI/badge.svg)
+
 Based on [this](http://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/) excellent post,
 but using only C++ and OpenCV. No additional dependencies.
 Some image pre-processing steps were also added.

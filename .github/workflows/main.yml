@@ -15,7 +15,7 @@ jobs:
         sudo apt-get install libopencv-dev
 
     - name: Checkout
-      uses: actions/checkout@v2-beta
+      uses: actions/checkout@01aecccf739ca6ff86c0539fbc67a7a5007bbc81
 
     - name: Configure
       run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ..

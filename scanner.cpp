@@ -4,6 +4,10 @@
 #include <math.h>
 #include <iostream>
 
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 using namespace cv;
 using namespace std;
 
@@ -113,27 +117,8 @@ void preProcess(Mat src, Mat &dst)
 
 string getOutputFileName(string path, string name)
 {
-	std::string fname, ext;
-
-	size_t sep = path.find_last_of("\\/");
-	if (sep != std::string::npos)
-	{
-		path = path.substr(sep + 1, path.size() - sep - 1);
-
-		size_t dot = path.find_last_of(".");
-		if (dot != std::string::npos)
-		{
-			fname = path.substr(0, dot);
-			ext = path.substr(dot, path.size() - dot);
-		}
-		else
-		{
-			fname = path;
-			ext = "";
-		}
-	}
-
-	return fname + "_" + name + ext;
+	fs::path filePath = path;
+	return filePath.stem().string() + "_" + name + filePath.extension().string();
 }
 
 int main(int argc, char **argv)
